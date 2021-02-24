@@ -33,7 +33,6 @@ let main argv =
     |> ignore
 
     deployment
-    |> Deploy.authenticate
     |> Deploy.execute "rg-ghactions-poc" Deploy.NoParameters
     |> printfn "%A"
 
