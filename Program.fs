@@ -23,7 +23,8 @@ let main argv =
         add_resource stg
     }
 
-    //printf "Generating ARM template..."
+
+    printf "azAppId: %s" azAppId
     //deployment |> Writer.quickWrite "output"
     //printfn "all done! Template written to output.json"
 
