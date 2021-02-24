@@ -9,4 +9,4 @@ jobs:
         uses: actions/setup-dotnet@v1.7.2
         with:
           dotnet-version: '3.1.x'
-      - run: dotnet run FarmerApp.sln
+      - run: dotnet run FarmerApp.sln -- ${{ secrets.AZAPPID }} ${{ secrets.AZSECRET }} ${{ secrets.AZTENANTID }}
