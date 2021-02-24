@@ -24,7 +24,7 @@ let main argv =
     }
 
 
-    printf "azAppId: %s" azAppId
+    //printf "azAppId: %s" azAppId
     //deployment |> Writer.quickWrite "output"
     //printfn "all done! Template written to output.json"
 
@@ -32,9 +32,9 @@ let main argv =
     Deploy.authenticate azAppId azSecret azTenantId
     |> ignore
 
-    //deployment
-    //|> Deploy.authenticate
-    //|> Deploy.execute "rg-ghactions-poc" Deploy.NoParameters
-    //|> printfn "%A"
+    deployment
+    |> Deploy.authenticate
+    |> Deploy.execute "rg-ghactions-poc" Deploy.NoParameters
+    |> printfn "%A"
 
     0
