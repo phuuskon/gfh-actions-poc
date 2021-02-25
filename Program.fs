@@ -48,10 +48,10 @@ let main argv =
 
     let pocVault = keyVault {
         name "kv-elisa-ghactions-poc"
-        add_secrets ["demouser";"demouserpw"]
         add_access_policies [
             AccessPolicy.create pocFunctions.SystemIdentity
         ]
+        add_secret "demosecret"
     }
 
     // Add resources to the ARM deployment using the add_resource keyword.
@@ -67,7 +67,7 @@ let main argv =
 
 
     deployment
-    |> Deploy.execute rgName Deploy.NoParameters
+    |> Deploy.execute rgName ["demosecret","initval"]
     |> printfn "%A"
 
     0
