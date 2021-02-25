@@ -9,4 +9,14 @@ jobs:
         uses: actions/setup-dotnet@v1.7.2
         with:
           dotnet-version: '3.1.x'
-      - run: dotnet run -p FarmerApp.fsproj -- ${{ secrets.AZAPPID }} ${{ secrets.AZSECRET }} ${{ secrets.AZTENANTID }}
+      - name: Install dependencies
+        run: dotnet restore
+      - name: build deployment
+        run: dotnet build --configuration Release --no-restore
+      - name: Login via Az module
+        uses: azure/login@v1.1
+        with:
+          creds: ${{secrets.AZURE_CREDENTIALS}}
+          enable-AzPSSession: true
+      - name: Run Farmer
+        run: dotnet bin/Release/netcoreapp3.1/FarmerApp.dll rg-ghactions-poc
